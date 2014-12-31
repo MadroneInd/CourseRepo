@@ -31,11 +31,16 @@ public class Test {
 		LOG.info("ID: "+course2.getDuration());
 		CourseGroupDao cdao = new CourseGroupDao();
 		cdao.CourseGroupCreate(1, "core", 1);*/
-		CourseSeries courseSeries = new CourseSeries();
+		/*CourseSeries courseSeries = new CourseSeries();
 		courseSeries.setCourseSeriesCompositeId("DVR-SHER-Fun-01");
 		CourseSeriesDao csDao = new CourseSeriesDao();
-		csDao.courseSeriesPublish(courseSeries);
-		
+		csDao.courseSeriesPublish(courseSeries);*/
+		/*CourseSeries courseSeries = new CourseSeries();
+		String locCode= "DVR-SHER";
+		String courseCode = "Fun";
+		int rep =0;
+		CourseSeriesDao csDao = new CourseSeriesDao();
+		csDao.courseSeriesCreate(courseCode,locCode, rep);*/
 	}
 
 }

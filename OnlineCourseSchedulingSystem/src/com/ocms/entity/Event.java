@@ -20,11 +20,11 @@ public class Event implements Serializable, IEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="event_event_id_seq")
     @SequenceGenerator(name="event_event_id_seq", sequenceName="event_event_id_seq", allocationSize=1)
     @Column(name="event_id")
-    private int id; 
-
+    private int id;
+    
     @Column(name="course_code")
     private String code;
-
+    
     @Column(name="event_name")
     private String name;
     
@@ -33,7 +33,7 @@ public class Event implements Serializable, IEntity {
     
     @Column(name="event_status")
     private String evStatus;
-
+    
     @Column(name="short_name")
     private String sName;
     
@@ -48,7 +48,10 @@ public class Event implements Serializable, IEntity {
     
     @Column(name="location_code")
     private String locationCode;
-
+    
+    @Column(name="max_no_of_reg_student")
+    private int maxNoRegStudent;
+    
 	public int getId() {
 		return id;
 	}
@@ -127,6 +130,14 @@ public class Event implements Serializable, IEntity {
 
 	public void setLocationCode(String locationCode) {
 		this.locationCode = locationCode;
+	}
+
+	public int getMaxNoRegStudent() {
+		return maxNoRegStudent;
+	}
+
+	public void setMaxNoRegStudent(int maxNoRegStudent) {
+		this.maxNoRegStudent = maxNoRegStudent;
 	}
 
 }

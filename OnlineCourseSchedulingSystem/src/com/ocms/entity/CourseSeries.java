@@ -1,6 +1,7 @@
 package com.ocms.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,8 +41,23 @@ public class CourseSeries  implements Serializable{
         @Column(name="type")
         private String type; 
 
-        @Column(name="count")
-        private int count;
+        @Column(name="value_count")
+        private int valueCount;
+        
+        @Column(name="publishing_status")
+        private String pubStatus;
+
+        @Column(name="start_date")
+        private Date startDate;
+        
+        @Column(name="end_date")
+        private Date endDate;
+        
+        @Column(name="max_no_of_student_reg")
+        private int maxNoOfStuReg;
+        
+        @Column(name="short_name")
+        private String shortName;
 
 		public int getId() {
 			return id;
@@ -99,15 +115,52 @@ public class CourseSeries  implements Serializable{
 			this.type = type;
 		}
 
-		public int getCount() {
-			return count;
+		public int getValueCount() {
+			return valueCount;
 		}
 
-		public void setCount(int count) {
-			this.count = count;
+		public void setValueCount(int valueCount) {
+			this.valueCount = valueCount;
+		}
+
+		public String getPubStatus() {
+			return pubStatus;
+		}
+
+		public void setPubStatus(String pubStatus) {
+			this.pubStatus = pubStatus;
+		}
+
+		public Date getStartDate() {
+			return startDate;
+		}
+
+		public void setStartDate(Date startDate) {
+			this.startDate = startDate;
+		}
+
+		public Date getEndDate() {
+			return endDate;
+		}
+
+		public void setEndDate(Date endDate) {
+			this.endDate = endDate;
+		}
+
+		public int getMaxNoOfStuReg() {
+			return maxNoOfStuReg;
+		}
+
+		public void setMaxNoOfStuReg(int maxNoOfStuReg) {
+			this.maxNoOfStuReg = maxNoOfStuReg;
+		}
+
+		public String getShortName() {
+			return shortName;
+		}
+
+		public void setShortName(String shortName) {
+			this.shortName = shortName;
 		} 
-        
-        
-        
-        
+               
 }

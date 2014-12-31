@@ -25,11 +25,14 @@ public String courseSeriesCreate(List courseList, String locationCode, List repe
 		int count=0;
 		int repetitionNo=0;
 		int loop=0;
-		
+		LOG.info("CourseSeriesDaoID: "+locationCode);
+		LOG.info("CourseSeriesDaoID: "+courseList);
+		LOG.info("CourseSeriesDaoID: "+repetitionList);
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.getTransaction().begin();
-		Query query = session.createQuery("Max(count)from CourseSeries where locationCode = '"+locationCode+"' ");
-		count = query.executeUpdate();
+		Query query = session.createQuery("select max(cs.valueCount) from CourseSeries as cs where locationCode = '"+locationCode+"'");
+		count = (int) query.list().get(0);
+		LOG.info("CourseSeriesDaoID: "+count);
 		Iterator<String> it1 = courseList.iterator();
 		Iterator<Integer> it2 = repetitionList.iterator();
 		while(it1.hasNext()) {
@@ -40,7 +43,7 @@ public String courseSeriesCreate(List courseList, String locationCode, List repe
             CourseSeries courseSeries = new CourseSeries();
             courseSeries.setCourseCode(courseCode);
             courseSeries.setLocationCode(locationCode);
-            courseSeries.setCount(count);
+            courseSeries.setValueCount(count);
             courseSeries.setCourseSeriesCompositeId(locationCode +" "+ count );
             Serializable rs= session.save(courseSeries); 
             loop=loop+1;
@@ -61,9 +64,9 @@ public String courseSeriesCreate(List courseList, String locationCode, List repe
 	   courseSeriesId= courseSeries.getCourseSeriesCompositeId();
 	   LOG.info("CourseSeriesDaoID: "+courseSeriesId);
 	   Query query = session.createQuery("from CourseSeries where courseSeriesCompositeId = ? ").setParameter(0, courseSeriesId);
-		List list = query.list();
-		LOG.info("CourseSeriesDaoID: "+list);
-		commitSession();
+	   List list = query.list();
+	   LOG.info("CourseSeriesDaoID: "+list);
+	   commitSession();
        return list;
 	   
    }
@@ -76,15 +79,20 @@ public String courseSeriesCreate(List courseList, String locationCode, List repe
 	   List list = courseSeriesSelect(courseSeries);
 	   Iterator<CourseSeries> it1 = list.iterator();
 	   while(it1.hasNext()) {
+		   
 		   CourseSeries courseSeriesInsrt = new CourseSeries();
 		   courseSeriesInsrt = it1.next();
 		   Event event = new Event();
 		   event.setCode(courseSeriesInsrt.getCourseCode());
 		   event.setLocationCode(courseSeriesInsrt.getLocationCode());
+		   event.setEvPubStatus(courseSeriesInsrt.getPubStatus());
+		   event.setEvRegStatus("Open");
+		   event.setsName(courseSeriesInsrt.getShortName());
+		   event.setMaxNoRegStudent(courseSeriesInsrt.getMaxNoOfStuReg());
 		   EventDao eventDao = new EventDao();
-		   eventId = eventDao.createEvent(event);   
+		   eventId = eventDao.createEvent(event);
+		   
 	   }
-	   
 	   return eventId;
 	   
     }
