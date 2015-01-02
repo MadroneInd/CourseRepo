@@ -50,7 +50,7 @@ public class CreateLocationServlet extends HttpServlet {
 		slocationContact.setEmail(request.getParameter("semail"));
 		LocationController locationController = new LocationController();
 		location=locationController.createLocation(location, locationContact, slocationContact);
-		response.sendRedirect("Locations.jsp");
+		response.sendRedirect("locations.jsp");
 	}
 
 }

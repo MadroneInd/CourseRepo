@@ -30,7 +30,7 @@ public class CourseSeriesCreateServlet extends HttpServlet {
 		CourseSeriesController courseSeriesController = new CourseSeriesController();
 		String courseSeriesId = courseSeriesController.courseSeriesCreate(courseList,locationCode,repetitionList);
 		//pw.print("Resultset:"+courseId);
-		response.sendRedirect("Courses.jsp?id=1#Courseedit-tab");
+		response.sendRedirect("courses.jsp?id=1#Courseedit-tab");
 	
 	}
 

@@ -34,7 +34,7 @@ public class CourseUpdateServlet extends HttpServlet {
 		courseController.updateCourse(course);
 		//pw.print("Resultset:"+courseId);
 		request.setAttribute("course", course);
-		RequestDispatcher rd=request.getRequestDispatcher("Courses.jsp"); 
+		RequestDispatcher rd=request.getRequestDispatcher("courses.jsp"); 
 		rd.include(request, response);
 	}
 

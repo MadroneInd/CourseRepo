@@ -29,7 +29,7 @@ public class LocationListServlet extends HttpServlet {
 		LocationController locationController = new LocationController();
 		List locationList = locationController.selectAllLocation();
 		session.setAttribute("locationList", locationList);
-		response.sendRedirect("Locations.jsp");
+		response.sendRedirect("locations.jsp");
 		LOG.info("Exiting the CourseListServlet class");
 	}
 

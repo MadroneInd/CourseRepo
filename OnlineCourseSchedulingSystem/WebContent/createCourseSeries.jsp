@@ -92,7 +92,7 @@
                                             <div class="checkbox">
                                              <label>
                                                  
-                                                <input name="bType[]" id="bType_"+count class="ads_Checkbox minimal-red" type="checkbox" value="${course.getCode()}" />${course.getCode()}
+                                                <input name="bType[]" id="bType_${count}" class="ads_Checkbox minimal-red" type="checkbox" value="${course.getCode()}" />${course.getCode()}
                                             </label>
                                             </div>
                                            <c:set var="count" value="${count + 1}" scope="page"/>
@@ -158,7 +158,31 @@ function CreateTextbox(textboxId,textboxvalue) {
 	textBox.setAttribute("value", textboxvalue);
     textboxId++;
     return textBox;
-}							
+}	
+
+function CreateHiddenLocationTextbox(textboxId,textboxvalue) {
+    var textBox = document.createElement("input");
+    textBox.setAttribute("type", "hidden");
+    textBox.setAttribute("id", "h_lname_"+textboxId);
+	textBox.setAttribute("class", "form-control");
+	textBox.setAttribute("style", "margin-bottom:10px;");	
+	textBox.setAttribute("name", "hidden_locationname_"+textboxId);
+	textBox.setAttribute("value", textboxvalue);
+    textboxId++;
+    return textBox;
+}	
+
+function CreateHiddenCourseTextbox(textboxId,textboxvalue) {
+    var textBox = document.createElement("input");
+    textBox.setAttribute("type", "hidden");
+    textBox.setAttribute("id", "h_cname_"+textboxId);
+	textBox.setAttribute("class", "form-control");
+	textBox.setAttribute("style", "margin-bottom:10px;");	
+	textBox.setAttribute("name", "hidden_coursename_"+textboxId);
+	textBox.setAttribute("value", textboxvalue);
+    textboxId++;
+    return textBox;
+}	
 							
 	var val = [];
     var counter = 0;	
@@ -185,6 +209,8 @@ function CreateTextbox(textboxId,textboxvalue) {
 				var arr = data.split('_');			
 				var textboxvalue = l1+ '-' +$(this).val();
 				$("#formContainer").append(CreateTextbox(arr[1],textboxvalue));		
+				$("#formContainer").append(CreateHiddenLocationTextbox(arr[1],l1));	
+				$("#formContainer").append(CreateHiddenCourseTextbox(arr[1],$(this).val()));				
 				
 			}
 		}	 
@@ -203,7 +229,9 @@ function CreateTextbox(textboxId,textboxvalue) {
 			var textboxvalue = l1+ '-' +$(this).val();
 			var data = $(this).attr("id");
 			var arr = data.split('_');			
-			$( "#"+arr[1] ).remove();		
+			$( "#"+arr[1] ).remove();	
+			$( "#h_lname_"+arr[1] ).remove();
+			$( "#h_cname_"+arr[1] ).remove();			
 		}
 		
 	}); 

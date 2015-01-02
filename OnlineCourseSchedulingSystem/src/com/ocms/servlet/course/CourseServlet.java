@@ -30,7 +30,7 @@ public class CourseServlet extends HttpServlet {
 		CourseController courseController = new CourseController();
 		int courseId =courseController.createCourse(course);
 		//pw.print("Resultset:"+courseId);
-		response.sendRedirect("Courses.jsp?id=1#Courseedit-tab");
+		response.sendRedirect("courses.jsp?id=1#Courseedit-tab");
 		
 	}
 

@@ -52,7 +52,7 @@ public class LocationUpdateServlet extends HttpServlet {
 		slocationContact.setEmail(request.getParameter("semail"));
 		LocationController locationController = new LocationController();
 		locationController.updateLocation(location, locationContact, slocationContact);
-		response.sendRedirect("Locations.jsp");
+		response.sendRedirect("locations.jsp");
 	}
 
 }

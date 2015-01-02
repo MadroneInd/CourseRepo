@@ -36,7 +36,7 @@ public class CourseSelect extends HttpServlet {
 		LOG.info("Code"+course.getCode());
 		LOG.info("Duration"+course.getDuration()); 
 		request.setAttribute("course", course);
-		RequestDispatcher rd=request.getRequestDispatcher("Courses.jsp"); 
+		RequestDispatcher rd=request.getRequestDispatcher("courses.jsp"); 
 		rd.include(request, response);
 		//response.sendRedirect("Courses.jsp#Courseedit-tab");
 		LOG.info("Exiting the CourseListServlet class");

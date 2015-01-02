@@ -29,7 +29,7 @@ public class CourseListServlet extends HttpServlet {
 		CourseController courseController = new CourseController();
 		List courseList = courseController.selectAllCourse();
 		session.setAttribute("courseList", courseList);
-		response.sendRedirect("Courses.jsp");
+		response.sendRedirect("courses.jsp");
 		LOG.info("Exiting the CourseListServlet class");
 	}
 
