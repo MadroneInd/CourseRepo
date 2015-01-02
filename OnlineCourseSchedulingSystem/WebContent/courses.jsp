@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Admin  | Locations</title>
+        <title>Admin  | Course Creation</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -30,7 +31,7 @@
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="left-side sidebar-offcanvas">
                 <!-- sidebar: style can be found in sidebar.less -->
-                <%@ include file="sidebar_menu.jsp" %>
+                <%@ include file="sidebarMenu.jsp" %>
                 <!-- /.sidebar -->
             </aside>
 
@@ -43,15 +44,17 @@
                             <!-- general form elements -->
                             <div class="box box-primary"> 
                                 <div class="box-header">
-                                    <h3 class="box-title">Locations</h3>
+                                    <h3 class="box-title">Course</h3>
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
                                 <br>
                         
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#Locationslist-tab" data-toggle="tab">Locations List <i class="fa"></i></a></li>
-                                    <li><a href="#Createlocation-tab" data-toggle="tab">Create Location <i class="fa"></i></a></li>
-                                     
+                               
+                                    <li  ><a href="#Courselist-tab" data-toggle="tab">Course List <i class="fa"></i></a></li>
+ 
+                                    <li><a href="#Coursecreate-tab" data-toggle="tab">Create Course<i class="fa"></i></a></li>
+                                    <li class="active"><a href="#Courseedit-tab" data-toggle="tab">Edit Course<i class="fa"></i></a></li>
                                     
                                 </ul>											
                                         
@@ -59,26 +62,26 @@
     <div class="tab-content">
     <br>
     
-    <div class="tab-pane active" id="Locationslist-tab" >
-                <!-- Main content -->
-                <%@ include file="inc_location_list.jsp" %>
-        
-    </div> 
-
-
-    <div class="tab-pane" id="Createlocation-tab">
-
-
-                <!-- Main content -->
-               
-              <section class="content" style="background-color:#FFF;">
-                   <%@ include file="inc_location_create.jsp" %>
-                </section><!-- /.content -->
-                 
+    <div class="tab-pane  " id="Courselist-tab">
+          <%@ include file="incCourseList.jsp" %>
     </div>
+        
+    <div class="tab-pane" id="Coursecreate-tab">
+   		<section class="content" style="background-color:#FFF;">
+		<%@ include file="incCourseCreate.jsp" %>
+        </section>
+    </div>
+
+    <div class="tab-pane active" id="Courseedit-tab">
+   		<section class="content" style="background-color:#FFF;">
+		<%@ include file="incCourseEdit.jsp" %>
+        </section>
+    </div>    
 
         
     </div>
+
+    
     <br>
  
                                    
@@ -94,30 +97,13 @@
                 
             </aside> <!-- /.right-side -->
         </div> <!-- ./wrapper -->
-      <!-- jQuery 2.0.2 -->
+<!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- DATA TABES SCRIPT -->
-        <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
         <!-- AdminLTE App -->
         <script src="js/AdminLTE/app.js" type="text/javascript"></script>
         <!-- AdminLTE for demo purposes -->
-        <script src="js/AdminLTE/demo.js" type="text/javascript"></script>
-        <!-- page script -->
-        <script type="text/javascript">
-            $(function() {
-                $("#example1").dataTable();
-                $('#example2').dataTable({
-                    "bPaginate": true,
-                    "bLengthChange": false,
-                    "bFilter": false,
-                    "bSort": true,
-                    "bInfo": true,
-                    "bAutoWidth": false
-                });
-            });
-        </script>       
+        <script src="js/AdminLTE/demo.js" type="text/javascript"></script>        
     </body>
 </html>

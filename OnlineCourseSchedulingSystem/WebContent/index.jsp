@@ -38,7 +38,7 @@
             <aside class="left-side sidebar-offcanvas">
                 <!-- sidebar: style can be found in sidebar.less -->
                 
-                <%@ include file="sidebar_menu.jsp" %>
+                <%@ include file="sidebarMenu.jsp" %>
                 <!-- /.sidebar -->
             </aside>
 
