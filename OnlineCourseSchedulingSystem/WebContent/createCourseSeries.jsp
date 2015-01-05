@@ -57,69 +57,79 @@
                                 <div class="box-header">
                                     <h3 class="box-title">New Page</h3>
                                 </div><!-- /.box-header -->
+                                
+                            <section style="background-color:#FFF;" class="content"> 
+                            <div class="row">
+  
+                            <div class="col-md-6">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Select Location</h3>
+                                    </div>
+                                    <div class="box-body" style="max-height: 150px;overflow-y: scroll;">
+                                                                 <!-- radio -->
+                                        <%List<Location> locationList = (List)session.getAttribute("locationList");%>
+                                        <c:forEach items="${locationList}" var="location">
+                                        <div class="form-group">
+                                            <label>
+                                                <input type="radio" name="l1" value="${location.getCode()}" class="minimal-red"  />${location.getCode()}
+                                            </label>
+                                        </div>
+                                        </c:forEach> 
+                                        </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+    
+                                <!-- iCheck -->
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Select Course</h3>
+                                    </div>
+                                    <div class="box-body" style="max-height: 150px;overflow-y: scroll;">
+                                 
+                                        <!-- Checkbox -->
+                                         <%List<Course> courseList = (List)session.getAttribute("courseList");%>
+                                         <c:set var="count" value="0" scope="page" />
+                                            <div class="form-group">
+                                            <c:forEach items="${courseList}" var="course">
+                                                <div class="checkbox">
+                                                 <label>
+                                                     
+                                                    <input name="bType[]" id="bType_${count}" class="ads_Checkbox minimal-red" type="checkbox" value="${course.getCode()}" />${course.getCode()}
+                                                </label>
+                                                </div>
+                                               <c:set var="count" value="${count + 1}" scope="page"/>
+                                            </c:forEach>   
+                                            </div>
+                                                                                                    
+                                        
+                                        
+                                    </div><!-- /.box-body -->
+                                   
+                                </div><!-- /.box -->
+                            </div>
+                            <form id="courseForm" action="/OnlineCourseSchedulingSystem/CourseSeriesCreateServlet" method="post">
+                            <div class="col-md-6" id="disshow" style="display:none;">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Course Series Preview</h3>
+                                    </div>
+                                    <div class="box-body">
+                                    <div id="formContainer"> </div>                              	
+                                    </div>
+                                    <div class="box-footer">
+                                       <button class="btn btn-primary" type="submit">Create</button>
+                                    </div>                                
+                                 </div>
+                            </div>                                
+                            </form>                          
+                            
+                            
+                            </div>                                
+                            </section>   
+                                                                                      
                             </div> <!-- /.box -->
                             
-						<div class="col-md-6">
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <h3 class="box-title">Select Location</h3>
-                                </div>
-                                <div class="box-body">
-                                                             <!-- radio -->
-                                    <%List<Location> locationList = (List)session.getAttribute("locationList");%>
-                                    <c:forEach items="${locationList}" var="location">
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="radio" name="l1" value="${location.getCode()}" class="minimal-red"  />${location.getCode()}
-                                        </label>
-                                    </div>
-                                    </c:forEach> 
-                                    </div><!-- /.box-body -->
-                            </div><!-- /.box -->
 
-                            <!-- iCheck -->
-                            <div class="box box-success">
-                                <div class="box-header">
-                                    <h3 class="box-title">Select Course</h3>
-                                </div>
-                                <div class="box-body">
-                             
-                                    <!-- Checkbox -->
-                                     <%List<Course> courseList = (List)session.getAttribute("courseList");%>
-                                     <c:set var="count" value="0" scope="page" />
-                                        <div class="form-group">
-                                        <c:forEach items="${courseList}" var="course">
-                                            <div class="checkbox">
-                                             <label>
-                                                 
-                                                <input name="bType[]" id="bType_${count}" class="ads_Checkbox minimal-red" type="checkbox" value="${course.getCode()}" />${course.getCode()}
-                                            </label>
-                                            </div>
-                                           <c:set var="count" value="${count + 1}" scope="page"/>
-                                        </c:forEach>   
-                                        </div>
-                                                                                                
-									
-                                    
-                                </div><!-- /.box-body -->
-                               
-                            </div><!-- /.box -->
-                        </div>
-                        
-                        <div class="col-md-6" id="disshow" style="display:none;">
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <h3 class="box-title">Course Series Preview</h3>
-                                </div>
-                                <div class="box-body">
-                                <div id="formContainer"> </div>                              	
-                                </div>
-                                <div class="box-footer">
-                                   <button class="btn btn-primary" type="submit">Create</button>
-                                </div>                                
-                             </div>
-                        </div>                                
-                        
                         </div> <!--/.col (left) -->
                         
                         
@@ -147,18 +157,18 @@
  
 $(document).ready(function () {
 var textboxId = 0;							
-function CreateTextbox(textboxId,textboxvalue) {
+ function CreateTextbox(textboxId,textboxvalue) {
     var textBox = document.createElement("input");
-    textBox.setAttribute("type", "textbox");
+    textBox.setAttribute("type", "label");
     textBox.setAttribute("id", textboxId);
 	textBox.setAttribute("class", "form-control");
 	textBox.setAttribute("style", "margin-bottom:10px;");
-	
+	textBox.setAttribute("disabled", "disabled");
 	textBox.setAttribute("name", "coursename_"+textboxId);
 	textBox.setAttribute("value", textboxvalue);
     textboxId++;
     return textBox;
-}	
+}	 
 
 function CreateHiddenLocationTextbox(textboxId,textboxvalue) {
     var textBox = document.createElement("input");
@@ -193,11 +203,9 @@ function CreateHiddenCourseTextbox(textboxId,textboxvalue) {
 		{
 			alert("Please select the location...");
 			$('#disshow').hide();
+			location.reload(true);
 			return false;
-			//$("input[name='bType[]']").removeAttr("checked");
-			//$( "input" ).prop( "checked", true );
-			 
-			//$( ".icheckbox_minimal" ).removeClass( "icheckbox_minimal checked" ).addClass( "icheckbox_minimal" );
+
 		} 
 		else{
 			//$("#disshow").prop('disabled',false);

@@ -51,7 +51,7 @@
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#Locationslist-tab" data-toggle="tab">Locations List <i class="fa"></i></a></li>
                                     <li><a href="#Createlocation-tab" data-toggle="tab">Create Location <i class="fa"></i></a></li>
-                                     
+                                    <li><a href="#Locationedit-tab" data-toggle="tab">Edit Location<i class="fa"></i></a></li>
                                     
                                 </ul>											
                                         
@@ -76,7 +76,12 @@
                 </section><!-- /.content -->
                  
     </div>
-
+    <div class="tab-pane" id="Locationedit-tab">
+                <!-- Main content -->
+              <section class="content" style="background-color:#FFF;">
+                   <%@ include file="inc_location_edit.jsp" %>
+                </section><!-- /.content -->
+    </div>
         
     </div>
     <br>

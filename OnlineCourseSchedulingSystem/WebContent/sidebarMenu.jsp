@@ -11,7 +11,7 @@
                <li><a href="${pageContext.request.contextPath}/CourseListServlet" ><i class="fa fa-angle-double-right"></i> Courses</a></li>             
   									<li><a href="${pageContext.request.contextPath}/LocationListServlet" ><i class="fa fa-angle-double-right"></i> Locations</a></li>
                               
-                               <li><a href="${pageContext.request.contextPath}/CourseSeriesListDetails" ><i class="fa fa-angle-double-right"></i> Course series</a></li>
+                               <li><a href="${pageContext.request.contextPath}/CourseSeriesListServlet" ><i class="fa fa-angle-double-right"></i> Course series</a></li>
                                
                                  <li><a href="#" title="Add Courses series publication"><i class="fa fa-angle-double-right"></i> Course series Grid</a></li>
                                

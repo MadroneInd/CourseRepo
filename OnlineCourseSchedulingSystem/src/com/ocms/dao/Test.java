@@ -1,13 +1,17 @@
 package com.ocms.dao;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import com.ocms.entity.Course;
 import com.ocms.entity.CourseSeries;
+import com.ocms.helper.HibernateUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class Test {
 	final static Log LOG = LogFactory.getLog(Test.class);
@@ -41,6 +45,7 @@ public class Test {
 		int rep =0;
 		CourseSeriesDao csDao = new CourseSeriesDao();
 		csDao.courseSeriesCreate(courseCode,locCode, rep);*/
+		
 	}
 
 }

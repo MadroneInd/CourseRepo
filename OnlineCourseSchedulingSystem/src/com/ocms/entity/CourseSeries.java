@@ -18,8 +18,8 @@ public class CourseSeries  implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	    @Id
-	    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="course_course_id_seq")
-        @SequenceGenerator(name="course_course_id_seq", sequenceName="course_course_id_seq", allocationSize=1)
+	    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="course_series_id_seq")
+        @SequenceGenerator(name="course_series_id_seq", sequenceName="course_series_id_seq", allocationSize=1)
         @Column(name="course_series_id")
         private int id; 
 
@@ -35,8 +35,8 @@ public class CourseSeries  implements Serializable{
         @Column(name="location_id")
         private int locationId;
 
-        @Column(name="course_series_composite_id")
-        private String courseSeriesCompositeId;
+        @Column(name="course_series_title")
+        private String courseSeriesTitle;
         
         @Column(name="type")
         private String type; 
@@ -59,6 +59,9 @@ public class CourseSeries  implements Serializable{
         @Column(name="short_name")
         private String shortName;
 
+        @Column(name="course_title")
+        private String courseTitle;
+        
 		public int getId() {
 			return id;
 		}
@@ -99,12 +102,12 @@ public class CourseSeries  implements Serializable{
 			this.locationId = locationId;
 		}
 
-		public String getCourseSeriesCompositeId() {
-			return courseSeriesCompositeId;
+		public String getCourseSeriesTitle() {
+			return courseSeriesTitle;
 		}
 
-		public void setCourseSeriesCompositeId(String courseSeriesCompositeId) {
-			this.courseSeriesCompositeId = courseSeriesCompositeId;
+		public void setCourseSeriesTitle(String courseSeriesTitle) {
+			this.courseSeriesTitle = courseSeriesTitle;
 		}
 
 		public String getType() {
@@ -161,6 +164,14 @@ public class CourseSeries  implements Serializable{
 
 		public void setShortName(String shortName) {
 			this.shortName = shortName;
+		}
+
+		public String getCourseTitle() {
+			return courseTitle;
+		}
+
+		public void setCourseTitle(String courseTitle) {
+			this.courseTitle = courseTitle;
 		} 
-               
+		           
 }

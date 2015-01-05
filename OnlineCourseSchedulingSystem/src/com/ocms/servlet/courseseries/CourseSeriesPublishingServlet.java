@@ -25,11 +25,11 @@ public class CourseSeriesPublishingServlet extends HttpServlet {
 		int eventId=0;
 		CourseSeries courseSeries = new CourseSeries();
 		
-		courseSeries.setCourseSeriesCompositeId(request.getParameter("courseSeriesId"));
+		courseSeries.setCourseSeriesTitle(request.getParameter("courseSeriesId"));
 		//courseSeries.setStartDate(request.getParameter("startDate"));
 		//courseSeries.setStartDate(request.getParameter("endDate"));
 		courseSeries.setMaxNoOfStuReg(Integer.parseInt(request.getParameter("courseSeriesId")));
-		courseSeries.setCourseSeriesCompositeId(request.getParameter("shortName"));
+		courseSeries.setCourseSeriesTitle(request.getParameter("shortName"));
 		CourseSeriesController courseSeriesController = new CourseSeriesController();
 		eventId = courseSeriesController.courseSeriesPublish(courseSeries);
 		//pw.print("Resultset:"+courseId);
