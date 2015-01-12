@@ -13,13 +13,13 @@ import com.ocms.entity.CourseSeries;
 public class CourseSeriesServiceImpl implements CourseSeriesService  {
 	
 	@SuppressWarnings("rawtypes")
-	public String courseSeriesCreate(ArrayList<String> courseList, ArrayList<String> locationList, ArrayList<Integer> repetitionList) throws SQLException{
+	public String courseSeriesCreate(String[] courseListArray, String[] locationListArray) throws SQLException{
 		
 		String courseSeriesId = null;
 		CourseSeriesDao courseSeriesDao = new CourseSeriesDao();
 		
 		try {
-			courseSeriesId = courseSeriesDao.courseSeriesCreate(courseList,locationList, repetitionList);
+			courseSeriesId = courseSeriesDao.courseSeriesCreate(courseListArray,locationListArray);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -49,6 +49,29 @@ public class CourseSeriesServiceImpl implements CourseSeriesService  {
 		List courseSeriesList = courseSeriesdao.selectAllCourseSeries();
 		return courseSeriesList;
 		
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public List selectCourseSeries(CourseSeries courseSeries){
+		
+		CourseSeriesDao courseSeriesdao = new CourseSeriesDao();
+		List courseSeriesList = courseSeriesdao.selectCourseSeries(courseSeries);
+		return courseSeriesList;
+		
+	}
+
+	@Override
+	public ArrayList<String> courseSeriesPreview(String[] courseListArray, String[] locationListArray) throws SQLException {
+		
+		ArrayList<String> courseSeriesDetails= new ArrayList<String>();
+		CourseSeriesDao courseSeriesDao = new CourseSeriesDao();
+		
+		try {
+			courseSeriesDetails = courseSeriesDao.courseSeriesPreview(courseListArray,locationListArray);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return courseSeriesDetails;
 	}
 
 }

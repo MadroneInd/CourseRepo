@@ -1,8 +1,13 @@
 package com.ocms.servlet.courseseries;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,14 +31,16 @@ public class CourseSeriesListDetails extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		LOG.info("Entering the CourseListServlet class");
-		HttpSession session = request.getSession(true);
+		//HttpSession session = request.getSession(true);
 		CourseController courseController = new CourseController();
 		List courseList = courseController.selectAllCourse();
-		session.setAttribute("courseList", courseList);
+		request.setAttribute("courseList", courseList);
 		LocationController locationController = new LocationController();
 		List locationList = locationController.selectAllLocation();
-		session.setAttribute("locationList", locationList);
-		response.sendRedirect("createCourseSeries.jsp");
+		request.setAttribute("locationList", locationList);
+		RequestDispatcher rd=request.getRequestDispatcher("multipleLocation.jsp"); 
+		rd.include(request, response);
+		//response.sendRedirect("multipleLocation.jsp");
 		LOG.info("Exiting the CourseListServlet class");
 		
 	}

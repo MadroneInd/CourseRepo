@@ -79,10 +79,10 @@ public class LocationDao extends AbstractDao {
 		initSession();  
 		List<Location> locationList = selectAllDetails("from Location");
 		LOG.info("LocationDao: "+locationList);
-        for (int i = 0; i < locationList.size(); i++) {
+        /*for (int i = 0; i < locationList.size(); i++) {
             Location location = (Location) locationList.get(i);
             LOG.info("Location["+i+ "]: "+location.getName());
-        }
+        }*/
         commitSession();
         return locationList;
        

@@ -21,73 +21,44 @@ import com.ocms.helper.HibernateUtil;
 public class CourseSeriesDao extends AbstractDao  {
 	final Log LOG = LogFactory.getLog(CourseSeriesDao.class);
 	
-@SuppressWarnings({ "unchecked", "rawtypes" })
-public String courseSeriesCreate(ArrayList<String> courseList, ArrayList<String> locationList, ArrayList<Integer> repetitionList) throws IOException, SQLException{
+public String courseSeriesCreate(String[] courseListArray, String[] locationListArray) throws IOException, SQLException{
 		
-	    List countList = null;
 		int count=0;
 		Integer countInteger=0;
-		int loop=0;
-		int repetitionNo=0;
-		String courseCode=null;
-		String locationCode=null;
-		String locationCodeNext=null;
 		
 		LOG.info("Entering Dao");
-		LOG.info("CourseSeriesDaoID: "+locationList);
-		LOG.info("CourseSeriesDaoID: "+courseList);
-		LOG.info("CourseSeriesDaoID: "+repetitionList);
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.getTransaction().begin();
-		Iterator<String> it1 = courseList.iterator();
-		Iterator<Integer> it2 = repetitionList.iterator();
-		Iterator<String> it3 = locationList.iterator();
-		locationCode = it3.next();
-		do{
-		 Query query = session.createQuery("select max(cs.valueCount) from CourseSeries as cs where locationCode = '"+locationCode+"'");
-		 countInteger =  (Integer)query.uniqueResult() ;
-		 LOG.info("CourseSeriesDaoIDCount: "+count);
-		 
-		 if(countInteger != null){
+		LOG.info("CourseSeriesDaoID: "+courseListArray);
+		LOG.info("CourseSeriesDaoID: "+locationListArray);
+		initSession();
+		for (String locationCode: locationListArray)
+	    {           
+			LOG.info("locationCode"+locationCode);
+			Query query = session.createQuery("select max(cs.valueCount) from CourseSeries as cs where locationCode = '"+locationCode+"'");
+			 countInteger =  (Integer)query.uniqueResult() ;
+			 LOG.info("CourseSeriesDaoIDCount: "+count);
+			 
+			 if(countInteger != null){
+				
+				 count=countInteger+01;
+			 }else{
+				 count=01;		 
+			 }
 			
-			 count=countInteger+01;
-		 }else{
-			 count=01;		 
-		 }
-		   do{
-			  courseCode = it1.next();
-              repetitionNo = 1;
-              loop=1;
-                while(loop<=repetitionNo){
-                CourseSeries courseSeries = new CourseSeries();
-                courseSeries.setCourseCode(courseCode);
-                courseSeries.setLocationCode(locationCode);
-                courseSeries.setValueCount(count);
-                courseSeries.setCourseSeriesTitle(locationCode +" Series-"+ count );
-                courseSeries.setCourseTitle(courseCode +"."+ locationCode +" Series-"+ count);
-                Serializable rs= session.save(courseSeries); 
-                loop=loop+1;
-                }
-             if(it3.hasNext()){ 
-               locationCodeNext=it3.next();
-               LOG.info("Not Null");
-               LOG.info("locationCodeNext:"+locationCodeNext);
-               LOG.info("locationCode:"+locationCode);
-             }else{
-            	 locationCodeNext=null; 
-            	 LOG.info("Null");
-                 LOG.info("locationCodeNext:"+locationCodeNext);
-                 LOG.info("locationCode:"+locationCode);
-             }
-            }while(locationCode.equals(locationCodeNext));
-		 locationCode=locationCodeNext;
-		}while(locationCodeNext!=null);
-        session.getTransaction().commit();
-        courseCode = null;
-        locationCode=null;
+			for (String courseCode: courseListArray)
+		    {           
+				LOG.info("courseCode"+courseCode);
+				 CourseSeries courseSeries = new CourseSeries();
+	             courseSeries.setCourseCode(courseCode);
+	             courseSeries.setLocationCode(locationCode);
+	             courseSeries.setValueCount(count);
+	             courseSeries.setCourseSeriesTitle(locationCode +"-Series-"+ count );
+	             courseSeries.setCourseTitle(courseCode +"."+ locationCode +"-Series-"+ count);
+	             Serializable rs= session.save(courseSeries); 
+				
+		    }
+	    }
+		commitSession();
         count=0;
-        loop=0;
-        repetitionNo=0;
         return "Success";
    }
    
@@ -144,5 +115,48 @@ public String courseSeriesCreate(ArrayList<String> courseList, ArrayList<String>
        return courseSeriesList;
        
 	}
+   
+   @SuppressWarnings({ "rawtypes", "unchecked" })
+	public List selectCourseSeries(CourseSeries courseSeries){
+	   
+	    String courseSeriesTitle=null;
+	    
+	
+		initSession();
+		courseSeriesTitle=courseSeries.getCourseTitle();
+		Query query = session.createQuery("from CourseSeries where courseSeriesTitle = ?").setParameter(0, courseSeriesTitle);
+		List<CourseSeries> courseSeriesList = query.list();
+		commitSession();
+		LOG.info("CourseSeriesDao: "+courseSeriesList);
+        return courseSeriesList;
+      
+	}
+   
+   @SuppressWarnings("null")
+public ArrayList<String> courseSeriesPreview(String[] courseListArray, String[] locationListArray) throws IOException, SQLException{
+		
+	   ArrayList<String> courseSeriesDetails= new ArrayList<String>();
+	   String title=null;
+		
+		LOG.info("Entering Dao");
+		LOG.info("CourseSeriesDaoID: "+courseListArray);
+		LOG.info("CourseSeriesDaoID: "+locationListArray);
+		
+		
+		for (String locationCode: locationListArray)
+	    {           
+			LOG.info("locationCode"+locationCode);
+			for (String courseCode: courseListArray)
+		    {           
+				LOG.info("courseCode"+courseCode);
+				title = courseCode+"."+locationCode;
+				courseSeriesDetails.add(title);
+				LOG.info("courseSeriesDetails:"+courseSeriesDetails);
+				
+		    }
+	    }
+		
+       return courseSeriesDetails;
+  }
 
 }

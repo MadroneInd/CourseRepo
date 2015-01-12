@@ -32,6 +32,8 @@ public class CourseSeriesListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		LOG.info("Entering the CourseSeriesListServlet class");
+		HttpSession session = request.getSession();
+		session.invalidate();
 		CourseSeriesController courseSeriesController = new CourseSeriesController();
 		List courseSeriesList = courseSeriesController.selectAllCourseSeries();
 		LOG.info("Course Series List: "+courseSeriesList);

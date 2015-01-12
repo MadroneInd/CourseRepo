@@ -79,7 +79,7 @@
     <div class="tab-pane" id="Locationedit-tab">
                 <!-- Main content -->
               <section class="content" style="background-color:#FFF;">
-                   <%@ include file="inc_location_edit.jsp" %>
+                   <%@ include file="incLocationEdit.jsp" %>
                 </section><!-- /.content -->
     </div>
         

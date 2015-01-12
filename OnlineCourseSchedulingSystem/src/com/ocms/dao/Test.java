@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.ocms.entity.Course;
 import com.ocms.entity.CourseSeries;
 import com.ocms.helper.HibernateUtil;
@@ -45,6 +47,8 @@ public class Test {
 		int rep =0;
 		CourseSeriesDao csDao = new CourseSeriesDao();
 		csDao.courseSeriesCreate(courseCode,locCode, rep);*/
+		//HttpSession session = null;
+		//LOG.info("courseSeriesCourseList: "+ session.getAttribute("courseSeriesCourseList"));
 		
 	}
 
